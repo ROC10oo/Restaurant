@@ -1,0 +1,74 @@
+# ========================
+# Visual Studio / .NET
+# ========================
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Visual Studio cache/options
+*.VC.db
+*.VC.VC.opendb
+*.ncb
+*.sdf
+*.opensdf
+
+# Build results
+bin/
+obj/
+AppPackages/
+TestResults/
+*.dll
+*.exe
+*.pdb
+*.appx
+*.appxbundle
+*.msi
+*.cache
+*.log
+
+# Visual Studio temporary files
+*.tmp
+*.temp
+*.vsix
+*.ide
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+_ReSharper*/
+
+# Visual Studio Code
+.vscode/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+*.nuspec
+
+# Coverage / Testing
+*.coverage
+*.coveragexml
+*.trx
+*.dotCover
+
+# Others / compressed files
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# OS files
+Thumbs.db
+Desktop.ini
+*.DS_Store
+
+# Visual Studio workspace folder
+.vs/
