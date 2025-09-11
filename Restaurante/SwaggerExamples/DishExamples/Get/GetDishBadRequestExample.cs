@@ -4,11 +4,11 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace Restaurant.SwaggerExamples.DishExamples.Get
 {
-    public class GetDishBadRequestExample : IExamplesProvider<ApiErrorr>
+    public class GetDishBadRequestExample : IExamplesProvider<ApiError>
     {
-        public ApiErrorr GetExamples()
+        public ApiError GetExamples()
         {
-            return new ApiErrorr
+            return new ApiError
             {
                 Message = DishErrorMessages.InvalidParameter,
             };

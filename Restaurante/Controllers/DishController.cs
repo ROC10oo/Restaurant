@@ -9,7 +9,6 @@ using Restaurant.SwaggerExamples.DishExamples.Create;
 using Restaurant.SwaggerExamples.DishExamples.Get;
 using Restaurant.SwaggerExamples.DishExamples.Update;
 using Swashbuckle.AspNetCore.Filters;
-using ApiError = Application.Models.Response.ApiError;
 
 
 namespace Restaurant.Controllers

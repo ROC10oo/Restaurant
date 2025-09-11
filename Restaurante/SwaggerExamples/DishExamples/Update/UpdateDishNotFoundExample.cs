@@ -4,11 +4,11 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace Restaurant.SwaggerExamples.DishExamples.Update
 {
-    public class UpdateDishNotFoundExample : IExamplesProvider<ApiErrorr>
+    public class UpdateDishNotFoundExample : IExamplesProvider<ApiError>
     {
-        public ApiErrorr GetExamples()
+        public ApiError GetExamples()
         {
-            return new ApiErrorr
+            return new ApiError
             {
                 Message = DishErrorMessages.DishNotExists,
             };

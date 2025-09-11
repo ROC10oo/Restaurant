@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ApiErrorr
+    public class ApiError
     {
         public string Message { get; set; } 
     }

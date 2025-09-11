@@ -9,15 +9,15 @@ using Domain.Entities;
 
 namespace Restaurant.SwaggerExamples.DishExamples.Create
 {
-    public class CreateDishBadRequestExamples: IMultipleExamplesProvider<ApiErrorr>
+    public class CreateDishBadRequestExamples: IMultipleExamplesProvider<ApiError>
     {
-        public IEnumerable<SwaggerExample<ApiErrorr>> GetExamples()
+        public IEnumerable<SwaggerExample<ApiError>> GetExamples()
         {
             return new[]
             {
-                SwaggerExample.Create("Precio inválido", new ApiErrorr { Message = DishErrorMessages.InvalidPrice }),
-                SwaggerExample.Create("Nombre vacío", new ApiErrorr { Message = DishErrorMessages.EmptyName }),
-                SwaggerExample.Create("Cateogria inexistente", new ApiErrorr { Message = DishErrorMessages.CategoryNotExists }),
+                SwaggerExample.Create("Precio inválido", new ApiError { Message = DishErrorMessages.InvalidPrice }),
+                SwaggerExample.Create("Nombre vacío", new ApiError { Message = DishErrorMessages.EmptyName }),
+                SwaggerExample.Create("Cateogria inexistente", new ApiError { Message = DishErrorMessages.CategoryNotExists }),
             };
         }
     }

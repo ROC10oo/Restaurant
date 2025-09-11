@@ -5,11 +5,11 @@ using Domain.Entities;
 
 namespace Restaurant.SwaggerExamples.DishExamples.Update
 {
-    public class UpdateDishBadRequestExamples : IExamplesProvider<ApiErrorr>
+    public class UpdateDishBadRequestExamples : IExamplesProvider<ApiError>
     {
-        public ApiErrorr GetExamples()
+        public ApiError GetExamples()
         {
-            return new ApiErrorr
+            return new ApiError
             {
                 Message = DishErrorMessages.InvalidPrice
             };

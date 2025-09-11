@@ -5,11 +5,11 @@ using Domain.Entities;
 
 namespace Restaurant.SwaggerExamples.DishExamples.Update
 {
-    public class UpdateDishConflictExample : IExamplesProvider<ApiErrorr>
+    public class UpdateDishConflictExample : IExamplesProvider<ApiError>
     {
-        public ApiErrorr GetExamples()
+        public ApiError GetExamples()
         {
-            return new ApiErrorr
+            return new ApiError
             {
                 Message = DishErrorMessages.DishAlreadyExists,
             };

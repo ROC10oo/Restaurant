@@ -54,7 +54,7 @@ namespace Restaurant.Middlewares
             }
 
             context.Response.StatusCode = (int)statusCode;
-            var response = new ApiErrorr { Message = message };
+            var response = new ApiError { Message = message };
             var json = JsonSerializer.Serialize(response);
             return context.Response.WriteAsync(json);
         }
