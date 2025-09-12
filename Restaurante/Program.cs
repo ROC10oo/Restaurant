@@ -110,6 +110,21 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<RestauranteDbContext>();
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Error in Migration.");
+    }
+}
+
 app.UseHttpsRedirection();
 
 
