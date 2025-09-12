@@ -87,7 +87,8 @@ builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
 
 builder.Services.AddSwaggerExamplesFromAssemblyOf<Program>();
 
-builder.Services.AddScoped<DishValidatorCreated>();
+builder.Services.AddScoped<IValidatorCreatedDish, DishValidatorCreated>();
+builder.Services.AddScoped<IValidatorUpdateDish, DishValidatorUpdate>();
 
 
 

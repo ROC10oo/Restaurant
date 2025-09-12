@@ -1,4 +1,5 @@
-﻿using Application.Models.Request;
+﻿using Application.Interfaces.IDish;
+using Application.Models.Request;
 using Domain.ErrorsMessages;
 using Domain.Exceptions;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.Validator
 {
-    public class DishValidatorCreated
+    public class DishValidatorCreated: IValidatorCreatedDish
     {
         public void Validate(DishRequest dish)
         {

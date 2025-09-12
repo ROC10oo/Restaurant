@@ -18,9 +18,9 @@ namespace Application.Services.ServicesDish
         private readonly IDishCommand _dishCommand;
         private readonly IDishQuery _dishQuery;
         private readonly ICategoryQuery _categoryQuery;
-        private readonly DishValidatorUpdate _dishValidator;
+        private readonly IValidatorUpdateDish _dishValidator;
 
-        public UpdateDishService(IDishCommand dishCommand, IDishQuery dishQuery, ICategoryQuery categoryQuery, DishValidatorUpdate dishValidator)
+        public UpdateDishService(IDishCommand dishCommand, IDishQuery dishQuery, ICategoryQuery categoryQuery, IValidatorUpdateDish dishValidator)
         {
             _dishCommand = dishCommand;
             _dishQuery = dishQuery;
