@@ -4,6 +4,7 @@ using Domain.ErrorsMessages;
 using Domain.Exceptions;
 using System.Net;
 using System.Text.Json;
+using Application.Exceptions;
 
 namespace Restaurant.Middlewares
 {

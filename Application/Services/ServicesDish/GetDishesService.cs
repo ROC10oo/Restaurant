@@ -2,6 +2,7 @@
 using Application.Interfaces.IDish;
 using Application.Models.Response;
 using Application.Enums;
+using Application.Exceptions;
 using Domain.ErrorsMessages;
 using System.Text.RegularExpressions;
 using Domain.Exceptions;

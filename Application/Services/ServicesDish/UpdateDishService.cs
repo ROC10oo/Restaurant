@@ -5,6 +5,7 @@ using Application.Models.Response;
 using Application.Validator;
 using Domain.ErrorsMessages;
 using Domain.Exceptions;
+using Application.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
