@@ -11,9 +11,6 @@ namespace Application.Interfaces.IDish
 {
     public interface IGetDishesService
     {
-        Task<IEnumerable<DishResponse>> GetDishes(string? name = null,
-    int? category = null,
-    OrderByPrice? sortByPrice = OrderByPrice.asc,
-    bool onlyActive = true);
+        Task<IEnumerable<DishResponse>> GetDishes(string? name = null,int? category = null,OrderByPrice? sortByPrice = OrderByPrice.asc,bool? onlyActive = null);
     }
 }

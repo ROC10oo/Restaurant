@@ -16,6 +16,6 @@ namespace Application.Interfaces.IDish
 
         Task<Dish> GetDishById(Guid id);
 
-        Task<List<Dish>> GetDishes(string? name = null, int? category = null, OrderByPrice? sortByPrice = OrderByPrice.asc, bool onlyActive = true);
+        Task<List<Dish>> GetDishes(string? name = null, int? category = null, OrderByPrice? sortByPrice = OrderByPrice.asc, bool? onlyActive = null);
     }
 }

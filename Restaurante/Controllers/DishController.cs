@@ -172,7 +172,7 @@ namespace Restaurant.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(GetDishBadRequestExample))]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DishResponse>>> GetDishes([FromQuery] string name = null, [FromQuery] int? category = null, [FromQuery] OrderByPrice? sortByPrice = OrderByPrice.asc, [FromQuery] bool onlyActive = true)
+        public async Task<ActionResult<IEnumerable<DishResponse>>> GetDishes([FromQuery] string name = null, [FromQuery] int? category = null, [FromQuery] OrderByPrice? sortByPrice = OrderByPrice.asc, [FromQuery] bool? onlyActive = null)
         {
 
             var dishes = await _getDishesService.GetDishes(name, category, sortByPrice, onlyActive);

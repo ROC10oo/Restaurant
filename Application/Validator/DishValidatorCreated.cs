@@ -17,6 +17,7 @@ namespace Application.Validator
                 throw new DishNameEmptyException();
             if (dish.price <= 0)
                 throw new DishInvalidPriceException();
+
         }
     }
 }

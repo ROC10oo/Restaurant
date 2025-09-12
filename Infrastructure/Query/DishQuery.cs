@@ -35,11 +35,7 @@ namespace Infrastructure.Query
 
 
 
-        public async Task<List<Dish>> GetDishes(
-       string? name = null,
-       int? category = null,
-       OrderByPrice? sortByPrice = OrderByPrice.asc,
-       bool onlyActive = true) // <-- ahora es bool
+        public async Task<List<Dish>> GetDishes(string? name = null, int? category = null, OrderByPrice? sortByPrice = OrderByPrice.asc, bool? onlyActive = null)
         {
             var query = _context.Dishes.AsNoTracking().AsQueryable();
 
@@ -56,8 +52,9 @@ namespace Infrastructure.Query
                 _ => query
             };
 
-            if (onlyActive)
+            if (onlyActive.HasValue && onlyActive.Value)
                 query = query.Where(d => d.Available);
+
 
             return await query.ToListAsync();
         }
