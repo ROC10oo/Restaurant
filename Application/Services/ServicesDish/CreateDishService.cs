@@ -51,11 +51,13 @@ namespace Application.Services.ServicesDish
             var NewDish = new Dish
             {
                 Name = dish.name,
-                Description = dish.description,
+                Description = dish.description ?? "",
                 Price = dish.price,
                 CategoryId = dish.category,
-                ImageUrl = dish.image,
+                ImageUrl = dish.image ?? "",
                 Available = true,
+                CreateDate = DateTime.UtcNow,
+                UpdateDate = DateTime.UtcNow,
 
 
             };

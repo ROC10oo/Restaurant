@@ -22,7 +22,11 @@ namespace Application.Services.ServicesDish
         }
 
 
-        public async Task<IEnumerable<DishResponse>> GetDishes(string? name = null, int? category = null, OrderByPrice? sortByPrice = OrderByPrice.asc, ActiveFilter onlyActive = ActiveFilter.True)
+        public async Task<IEnumerable<DishResponse>> GetDishes(
+    string? name = null,
+    int? category = null,
+    OrderByPrice? sortByPrice = OrderByPrice.asc,
+    bool onlyActive = true)
         {
             
             var dishes = await _dishQuery.GetDishes(name, category, sortByPrice, onlyActive);

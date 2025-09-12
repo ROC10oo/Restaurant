@@ -59,10 +59,10 @@ namespace Application.Services.ServicesDish
 
 
             existsDish.Name = dish.name;
-            existsDish.Description = dish.description;
+            existsDish.Description = dish.description ?? "";
             existsDish.Price = dish.price;
             existsDish.CategoryId = dish.category;
-            existsDish.ImageUrl = dish.image;
+            existsDish.ImageUrl = dish.image ?? "";
             existsDish.Available = dish.isActive;
             existsDish.UpdateDate = DateTime.UtcNow;
 

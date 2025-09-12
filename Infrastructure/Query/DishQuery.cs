@@ -34,15 +34,19 @@ namespace Infrastructure.Query
 
 
 
-        
-        public async Task<List<Dish>> GetDishes(string? name = null, int? category = null, OrderByPrice? sortByPrice = OrderByPrice.asc, ActiveFilter onlyActive = ActiveFilter.True) //Devuelvo una lista y le paso parametros opcionales
+
+        public async Task<List<Dish>> GetDishes(
+       string? name = null,
+       int? category = null,
+       OrderByPrice? sortByPrice = OrderByPrice.asc,
+       bool onlyActive = true) // <-- ahora es bool
         {
             var query = _context.Dishes.AsNoTracking().AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(name))  
+            if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name.Contains(name));
 
-            if (category.HasValue) 
+            if (category.HasValue)
                 query = query.Where(d => d.CategoryId == category.Value);
 
             query = sortByPrice switch
@@ -52,15 +56,12 @@ namespace Infrastructure.Query
                 _ => query
             };
 
-            if (onlyActive == ActiveFilter.True)
+            if (onlyActive)
                 query = query.Where(d => d.Available);
-
-
-
 
             return await query.ToListAsync();
         }
 
-        
+
     }
 }
