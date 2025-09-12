@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application.Enums
 {
+
     public enum ActiveFilter
     {
-    
         False = 0,
         True = 1,
-    
+
     }
 }

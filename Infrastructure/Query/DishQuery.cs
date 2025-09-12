@@ -60,5 +60,7 @@ namespace Infrastructure.Query
 
             return await query.ToListAsync();
         }
+
+        
     }
 }

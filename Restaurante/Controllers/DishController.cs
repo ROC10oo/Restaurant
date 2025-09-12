@@ -109,7 +109,7 @@ namespace Restaurant.Controllers
 
 
         [HttpPut("{id}")]
-        
+
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(UpdateDishBadRequestExamples))]
@@ -117,13 +117,13 @@ namespace Restaurant.Controllers
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(UpdateDishNotFoundExample))]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
         [SwaggerResponseExample(StatusCodes.Status409Conflict, typeof(UpdateDishConflictExample))]
-       
-        
+
+
         public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishRequestUpdate request)
         {
             var resultado = await _updateDishService.UpdateDish(request, id);
-                return Ok(resultado);
-            
+            return Ok(resultado);
+
         }
 
 
@@ -174,11 +174,12 @@ namespace Restaurant.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DishResponse>>> GetDishes([FromQuery] string name = null, [FromQuery] int? category = null, [FromQuery] OrderByPrice? sortByPrice = OrderByPrice.asc, [FromQuery] ActiveFilter onlyActive = ActiveFilter.True)
         {
-                var dishes = await _getDishesService.GetDishes(name, category, sortByPrice, onlyActive);
-                return Ok(dishes);
+
+            var dishes = await _getDishesService.GetDishes(name, category, sortByPrice, onlyActive);
+
+            return Ok(dishes);
         }
+
     }
-
-
 }
 

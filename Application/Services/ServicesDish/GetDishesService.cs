@@ -29,7 +29,7 @@ namespace Application.Services.ServicesDish
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                if (!Regex.IsMatch(name, @"^[a-zA-Z0-9\s]+$"))
+                if (!Regex.IsMatch(name, @"^[\p{L}0-9\s,\.\-]+$"))
                 {
                     throw new InvalidParameterException();
                 }
