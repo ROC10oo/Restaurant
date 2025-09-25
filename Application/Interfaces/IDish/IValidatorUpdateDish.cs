@@ -9,6 +9,6 @@ namespace Application.Interfaces.IDish
 {
     public interface IValidatorUpdateDish
     {
-        void Validate(DishRequestUpdate dish);
+        void Validate(DishUpdateRequest dish);
     }
 }

@@ -119,7 +119,7 @@ namespace Restaurant.Controllers
         [SwaggerResponseExample(StatusCodes.Status409Conflict, typeof(UpdateDishConflictExample))]
 
 
-        public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishRequestUpdate request)
+        public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishUpdateRequest request)
         {
             var resultado = await _updateDishService.UpdateDish(request, id);
             return Ok(resultado);

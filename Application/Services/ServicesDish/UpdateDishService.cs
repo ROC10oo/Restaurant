@@ -29,7 +29,7 @@ namespace Application.Services.ServicesDish
             _dishValidator = dishValidator;
         }
 
-        public async Task<DishResponse> UpdateDish(DishRequestUpdate dish, Guid Id)
+        public async Task<DishResponse> UpdateDish(DishUpdateRequest dish, Guid Id)
         {
             var existsDish = await _dishQuery.GetDishById(Id);
             

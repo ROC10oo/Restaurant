@@ -10,6 +10,6 @@ namespace Application.Interfaces.IDish
 {
     public interface IUpdateDishService
     {
-        Task<DishResponse> UpdateDish(DishRequestUpdate dish, Guid id);
+        Task<DishResponse> UpdateDish(DishUpdateRequest dish, Guid id);
     }
 }

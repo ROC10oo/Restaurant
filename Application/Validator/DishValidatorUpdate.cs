@@ -12,7 +12,7 @@ namespace Application.Validator
 {
     public class DishValidatorUpdate: IValidatorUpdateDish
     {
-        public void Validate(DishRequestUpdate dish)
+        public void Validate(DishUpdateRequest dish)
         {
             if (dish.price <= 0)
                 throw new DishInvalidPriceException();
