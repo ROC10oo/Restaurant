@@ -25,8 +25,6 @@ namespace Application.Services.ServicesDish
 
         public async Task<IEnumerable<DishResponse>> GetDishes(string? name = null,int? category = null,OrderByPrice? sortByPrice = OrderByPrice.asc,bool? onlyActive = null)
         {
-            
-            var dishes = await _dishQuery.GetDishes(name, category, sortByPrice, onlyActive);
 
             if (!string.IsNullOrWhiteSpace(name))
             {
@@ -46,6 +44,8 @@ namespace Application.Services.ServicesDish
 
                 }
             }
+
+            var dishes = await _dishQuery.GetDishes(name, category, sortByPrice, onlyActive);
 
             return dishes.Select(d => new DishResponse
             {
