@@ -12,5 +12,7 @@ namespace Application.Interfaces.IDish
         Task CreateDish(Dish dish);
 
         Task UpdateDish(Dish dish);
+
+        Task DeleteDish(Dish dish);
     }
 }

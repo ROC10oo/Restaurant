@@ -9,6 +9,6 @@ namespace Domain.Exceptions
 {
     public class DishNameEmptyException : Exception
     {
-        public DishNameEmptyException() : base(DishErrorMessages.EmptyName) { }
+        public DishNameEmptyException() : base(ErrorMessages.EmptyName) { }
     }
 }

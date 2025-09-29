@@ -9,6 +9,6 @@ namespace Domain.Exceptions
 {
     public class DishInvalidPriceException : Exception
     {
-        public DishInvalidPriceException() : base(DishErrorMessages.InvalidPrice) { }
+        public DishInvalidPriceException() : base(ErrorMessages.InvalidPrice) { }
     }
 }

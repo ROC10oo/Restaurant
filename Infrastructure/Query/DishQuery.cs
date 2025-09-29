@@ -23,16 +23,15 @@ namespace Infrastructure.Query
 
         public async Task<Dish> GetDishById(Guid id)
         {
-            return await _context.Dishes.FirstOrDefaultAsync(c => c.DishId == id);
+            return await _context.Dishes
+                .Include(d => d.Category)
+                .FirstOrDefaultAsync(c => c.DishId == id);
         }
 
         public async Task<bool> GetDishByName(string name)
         {
             return await _context.Dishes.AnyAsync(d => d.Name == name);  
         }
-
-
-
 
 
         public async Task<List<Dish>> GetDishes(string? name = null, int? category = null, OrderByPrice? sortByPrice = OrderByPrice.asc, bool? onlyActive = null)

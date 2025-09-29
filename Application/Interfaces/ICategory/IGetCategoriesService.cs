@@ -8,14 +8,8 @@ using Application.Models.Response;
 
 namespace Application.Interfaces.ICategory
 {
-    public interface ICategoryService
+    public interface IGetCategoriesService
     {
         Task<List<CategoryResponse>> GetAllCategories();
-
-        Task<CategoryResponse> CreateCategory(CategoryRequest categoria);
-
-        Task<CategoryResponse> UpdateCategory(int id, CategoryRequest categoria);
-
-        Task<CategoryResponse> GetCategoryById(int id);
     }
 }

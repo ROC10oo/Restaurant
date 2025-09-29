@@ -24,6 +24,12 @@ namespace Infrastructure.Command
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteDish(Dish dish)
+        {
+            _context.Remove(dish);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task UpdateDish(Dish dish)
         {
             _context.Update(dish);

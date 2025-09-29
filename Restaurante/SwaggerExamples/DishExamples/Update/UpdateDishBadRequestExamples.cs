@@ -11,7 +11,7 @@ namespace Restaurant.SwaggerExamples.DishExamples.Update
         {
             return new ApiError
             {
-                Message = DishErrorMessages.InvalidPrice
+                Message = ErrorMessages.InvalidPrice
             };
         }
     }

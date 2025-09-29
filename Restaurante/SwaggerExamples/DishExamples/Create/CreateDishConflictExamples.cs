@@ -11,7 +11,7 @@ namespace Restaurant.SwaggerExamples.DishExamples.Create
         {
             return new ApiError 
             {
-                Message = DishErrorMessages.DishAlreadyExists
+                Message = ErrorMessages.DishAlreadyExists
             };
         }
     }

@@ -10,7 +10,7 @@ namespace Restaurant.SwaggerExamples.DishExamples.Update
         {
             return new ApiError
             {
-                Message = DishErrorMessages.DishNotExists,
+                Message = ErrorMessages.DishNotExists,
             };
         }
     }

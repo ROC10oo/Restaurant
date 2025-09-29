@@ -20,9 +20,9 @@ namespace Infrastructure.Query
             _context = context;
         }
 
-        public Task<List<Category>> GetAllCategories()
+        public async Task<List<Category>> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return await _context.Categories.ToListAsync();
         }
 
         public async Task<Category> GetCategoryById(int id)

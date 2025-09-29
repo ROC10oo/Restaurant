@@ -10,7 +10,7 @@ namespace Restaurant.SwaggerExamples.DishExamples.Get
         {
             return new ApiError
             {
-                Message = DishErrorMessages.InvalidParameter,
+                Message = ErrorMessages.InvalidId,
             };
         }
     }

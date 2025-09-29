@@ -1,7 +1,17 @@
 using Application.Interfaces.ICategory;
+using Application.Interfaces.IDeliveryType;
 using Application.Interfaces.IDish;
+using Application.Interfaces.IOrder;
+using Application.Interfaces.IOrderItem;
+using Application.Interfaces.IStatus;
+using Application.Services.ServiceCategory;
+using Application.Services.ServiceDeliveryType;
+using Application.Services.ServiceOrder;
 using Application.Services.ServicesDish;
+using Application.Services.ServiceStatus;
 using Application.Validator;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Infrastructure.Command;
 using Infrastructure.Data;
 using Infrastructure.Query;
@@ -12,8 +22,6 @@ using Restaurant.Middlewares;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,18 +86,43 @@ builder.Services.AddDbContext<RestauranteDbContext>(opt =>
 // Registrar servicios de dominio (arquitectura hexagonal)
 builder.Services.AddScoped<IDishCommand, DishCommand>();
 builder.Services.AddScoped<IDishQuery, DishQuery>();
+
 builder.Services.AddScoped<IUpdateDishService, UpdateDishService>();
 builder.Services.AddScoped<ICreateDishService, CreateDishService>();
 builder.Services.AddScoped<IGetDishesService, GetDishesService>();
+builder.Services.AddScoped<IGetDishService, GetDishService>();
+builder.Services.AddScoped<IDeleteDishService, DeleteDishService>();
 
 builder.Services.AddScoped<ICategoryCommand, CategoryCommand>();
 builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
+builder.Services.AddScoped<IGetCategoriesService, GetCategoriesService>();
+
+
+
+builder.Services.AddScoped<IStatusQuery, StatusQuery>();
+builder.Services.AddScoped<IGetStatusService, GetStatusService>();
+
+
+
+builder.Services.AddScoped<IDeliveryTypeQuery, DeliveryTypeQuery>();
+builder.Services.AddScoped<IGetDeliverysTypesService, GetDeliverysTypesService>();
+
+builder.Services.AddScoped<IOrderQuery, OrderQuery>();
+builder.Services.AddScoped<IOrderCommand, OrderCommand>();
+builder.Services.AddScoped<ICreateOrderService, CreateOrderService>();
+builder.Services.AddScoped<IGetOrdersService, GetOrdersService>();
+builder.Services.AddScoped<IGetOrderService, GetOrderService>();
+builder.Services.AddScoped<IUpdateOrderService, UpdateOrderService>();
+
+
+builder.Services.AddScoped<IOrderItemCommand, OrderItemCommand>();
+builder.Services.AddScoped<IOrderItemQuery, OrderItemQuery>();
+
 
 builder.Services.AddSwaggerExamplesFromAssemblyOf<Program>();
 
 builder.Services.AddScoped<IValidatorCreatedDish, DishValidatorCreated>();
 builder.Services.AddScoped<IValidatorUpdateDish, DishValidatorUpdate>();
-
 
 
 

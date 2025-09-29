@@ -37,15 +37,24 @@ namespace Restaurant.Middlewares
 
             switch (ex)
             {
+                case OrderInPreparationException:
+                case DishNotAvailableException:
+                case InvalidDateRangeException:
+                case IDInvalidException:
                 case InvalidParameterException:
                 case CategoryNotFoundException:
                 case DishNameEmptyException:
+                case InvalidDeliveryException:
+                case CantInvalidException:
+                case DishNotAvailableOrNotExistsException:
                 case DishInvalidPriceException:
                     statusCode = HttpStatusCode.BadRequest;
                     break;
+                case DishUsedInOrderException:
                 case DishAlreadyExistsException:
                     statusCode = HttpStatusCode.Conflict;
                     break;
+                case OrderNotFoundException:
                 case DishNotFoundException:
                     statusCode = HttpStatusCode.NotFound; 
                     break;

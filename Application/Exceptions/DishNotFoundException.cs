@@ -9,6 +9,6 @@ namespace Application.Exceptions
 {
     public class DishNotFoundException : Exception
     {
-        public DishNotFoundException() : base(DishErrorMessages.DishNotExists) { }
+        public DishNotFoundException() : base(ErrorMessages.DishNotExists) { }
     }
 }

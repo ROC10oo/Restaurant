@@ -5,7 +5,9 @@ using Application.Models.Response;
 using Application.Validator;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.SwaggerExamples.DeliveryTypeExamples.Get;
 using Restaurant.SwaggerExamples.DishExamples.Create;
+using Restaurant.SwaggerExamples.DishExamples.Delete;
 using Restaurant.SwaggerExamples.DishExamples.Get;
 using Restaurant.SwaggerExamples.DishExamples.Update;
 using Swashbuckle.AspNetCore.Filters;
@@ -21,12 +23,17 @@ namespace Restaurant.Controllers
         private readonly IGetDishesService _getDishesService;
         private readonly ICreateDishService _createDishService;
         private readonly IUpdateDishService _updateDishService;
+        private readonly IGetDishService _getDishService;
+        private readonly IDeleteDishService _deleteDishService;
 
-        public DishController(IGetDishesService getDishesService, ICreateDishService createDishService, IUpdateDishService updateDishService)
+        public DishController(IGetDishesService getDishesService, ICreateDishService createDishService, IUpdateDishService updateDishService, IGetDishService getDishService, IDeleteDishService deleteDishService)
         {
             _getDishesService = getDishesService;
             _createDishService = createDishService;
             _updateDishService = updateDishService;
+            _getDishService = getDishService;
+            _deleteDishService = deleteDishService;
+
         }
 
 
@@ -110,7 +117,7 @@ namespace Restaurant.Controllers
 
         [HttpPut("{id}")]
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(UpdateDishBadRequestExamples))]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
@@ -168,9 +175,10 @@ namespace Restaurant.Controllers
         /// /// <response code="200">Lista de platos obtenida exitosamente</response>
         /// <response code="400">Parámetros de búsqueda inválidos</response>
         /// 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<DishResponse>), StatusCodes.Status200OK)]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(GetAllDishesOKExample))]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(GetDishBadRequestExample))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(GetDishesBadRequestExample))]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DishResponse>>> GetDishes([FromQuery] string name = null, [FromQuery] int? category = null, [FromQuery] OrderByPrice? sortByPrice = OrderByPrice.asc, [FromQuery] bool? onlyActive = null)
         {
@@ -179,6 +187,77 @@ namespace Restaurant.Controllers
 
             return Ok(dishes);
         }
+
+
+
+        /// <summary>
+        /// Obtener plato por ID
+        /// </summary>
+        /// <remarks>
+        /// Obtiene los detalles completos de un plato específico.
+        ///
+        ///
+        /// **Casos de uso:**
+        /// - Ver detalles de un plato antes de agregarlo a la orden
+        /// - Mostrar información detallada en el menú
+        /// - Verificación de disponibilidad
+        /// </remarks>
+        /// /// <response code="200">Plato encontrado exitosamente</response>
+        /// <response code="400">ID de plato inválido</response>
+        ///  <response code="404">Plato no encontrado</response>
+        ///  
+
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(GetDishBadRequestExample))]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(GetDishNotFoundExample))]
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<DishResponse>> GetDish([FromRoute] string id)
+        {
+            var dish = await _getDishService.GetDishById(id);
+            return Ok(dish);
+        }
+
+
+
+
+        /// <summary>
+        /// Eliminar plato
+        /// </summary>
+        /// <remarks>
+        /// Elimina un plato del menú del restaurante.
+        ///
+        ///
+        /// **Importante:**
+        /// - Solo se pueden eliminar platos que no estén en órdenes activas
+        /// - Típicamente se recomienda desactivar (isActive=false) en lugar de eliminar
+        /// 
+        /// 
+        /// **Casos de error 409:**
+        /// - El plato está incluido en órdenes pendientes o en proceso
+        /// - El plato tiene dependencias que impiden su eliminación
+        /// </remarks>
+        /// /// <response code="200">Plato eliminado exitosamente</response>
+        /// <response code="409">No se puede eliminar - plato en uso</response>
+        ///  <response code="404">Plato no encontrado</response>
+
+
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(DeleteDishOKExample))]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(UpdateDishNotFoundExample))]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
+        [SwaggerResponseExample(StatusCodes.Status409Conflict, typeof(DeleteDishConflictExample))]
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteDish([FromRoute] Guid id)
+        {
+            var dish = await _deleteDishService.DeleteDish(id);
+            return Ok(dish);
+        }
+
 
     }
 }

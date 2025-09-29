@@ -15,9 +15,9 @@ namespace Restaurant.SwaggerExamples.DishExamples.Create
         {
             return new[]
             {
-                SwaggerExample.Create("Precio inválido", new ApiError { Message = DishErrorMessages.InvalidPrice }),
-                SwaggerExample.Create("Nombre vacío", new ApiError { Message = DishErrorMessages.EmptyName }),
-                SwaggerExample.Create("Cateogria inexistente", new ApiError { Message = DishErrorMessages.CategoryNotExists }),
+                SwaggerExample.Create("Precio inválido", new ApiError { Message = ErrorMessages.InvalidPrice }),
+                SwaggerExample.Create("Nombre vacío", new ApiError { Message = ErrorMessages.EmptyName }),
+                SwaggerExample.Create("Cateogria inexistente", new ApiError { Message = ErrorMessages.CategoryNotExists }),
             };
         }
     }

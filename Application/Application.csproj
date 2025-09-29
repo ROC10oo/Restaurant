@@ -28,11 +28,4 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\IDeliveryType\" />
-    <Folder Include="Interfaces\IOrder\" />
-    <Folder Include="Interfaces\IOrderItem\" />
-    <Folder Include="Interfaces\IStatus\" />
-  </ItemGroup>
-
 </Project>

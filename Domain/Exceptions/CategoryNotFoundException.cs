@@ -9,6 +9,6 @@ namespace Domain.Exceptions
 {
     public class CategoryNotFoundException : Exception
     {
-        public CategoryNotFoundException() : base(DishErrorMessages.CategoryNotExists) { }
+        public CategoryNotFoundException() : base(ErrorMessages.CategoryNotExists) { }
     }
 }

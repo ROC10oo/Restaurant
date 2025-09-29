@@ -9,6 +9,6 @@ namespace Application.Exceptions
 {
     public class InvalidParameterException : Exception
     {
-        public InvalidParameterException() : base(DishErrorMessages.InvalidParameter) { }
+        public InvalidParameterException() : base(ErrorMessages.InvalidParameter) { }
     }
 }

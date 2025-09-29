@@ -9,6 +9,6 @@ namespace Domain.Exceptions
 {
     public class DishAlreadyExistsException : Exception
     {
-        public DishAlreadyExistsException() : base(DishErrorMessages.DishAlreadyExists) { }
+        public DishAlreadyExistsException() : base(ErrorMessages.DishAlreadyExists) { }
     }
 }
