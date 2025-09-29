@@ -113,6 +113,7 @@ builder.Services.AddScoped<ICreateOrderService, CreateOrderService>();
 builder.Services.AddScoped<IGetOrdersService, GetOrdersService>();
 builder.Services.AddScoped<IGetOrderService, GetOrderService>();
 builder.Services.AddScoped<IUpdateOrderService, UpdateOrderService>();
+builder.Services.AddScoped<IUpdateOrderItemForStatusService, UpdateOrderItemForStatusService>();
 
 
 builder.Services.AddScoped<IOrderItemCommand, OrderItemCommand>();

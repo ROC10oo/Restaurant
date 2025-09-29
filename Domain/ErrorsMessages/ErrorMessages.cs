@@ -24,5 +24,7 @@ namespace Domain.ErrorsMessages
         public const string OrderNotExists = "Orden no encontrada";
         public const string DishNotAvailable = "El plato especificado no está disponible";
         public const string OrderInPreparation = "No se puede modificar una orden que ya está en preparación";
+        public const string OrderItemNotFound = "Item no encontrado en la orden";
+        public const string InvalidStatus = "El estado especificado no es válido";
     }
 }

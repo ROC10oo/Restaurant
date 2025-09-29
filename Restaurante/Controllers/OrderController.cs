@@ -8,6 +8,7 @@ using Restaurant.SwaggerExamples.DishExamples.Update;
 using Restaurant.SwaggerExamples.OrderExamples.Create;
 using Restaurant.SwaggerExamples.OrderExamples.Get;
 using Restaurant.SwaggerExamples.OrderExamples.Update;
+using Restaurant.SwaggerExamples.OrderItemExamples.Update;
 using Swashbuckle.AspNetCore.Filters;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -21,14 +22,17 @@ namespace Restaurant.Controllers
         private readonly IGetOrdersService _getOrdersService;
         private readonly IGetOrderService _getOrderService;
         private readonly IUpdateOrderService _updateOrderService;
+        private readonly IUpdateOrderItemForStatusService _updateOrderItemForStatusService;
 
 
-        public OrderController(ICreateOrderService createOrderService, IGetOrdersService getOrdersService, IGetOrderService getOrderService, IUpdateOrderService updateOrderService)
+        public OrderController(ICreateOrderService createOrderService, IGetOrdersService getOrdersService, IGetOrderService getOrderService, 
+            IUpdateOrderService updateOrderService, IUpdateOrderItemForStatusService updateOrderItemForStatusService)
         {
             _createOrderService = createOrderService;
             _getOrdersService = getOrdersService;
             _getOrderService = getOrderService;
             _updateOrderService = updateOrderService;
+            _updateOrderItemForStatusService = updateOrderItemForStatusService;
         }
 
 
@@ -185,6 +189,50 @@ namespace Restaurant.Controllers
             var resultado = await _updateOrderService.UpdateOrder(request, id);
             return Ok(resultado);
 
+        }
+
+        /// <summary>
+        /// Actualizar estado de item individual
+        /// </summary>
+        /// <remarks>
+        /// Actualiza el estado de un item específico dentro de una orden.
+        ///
+        /// **Casos de uso típicos:**
+        /// - Cocina marca un plato como "En preparación"
+        /// - Cocina marca un plato como "Listo"
+        /// - Cancelar un item específico si no se puede preparar
+        ///
+        /// **Flujo de estados típico:**
+        /// 1. Pendiente → En preparación (cocina comienza)
+        /// 2. En preparación → Listo (plato terminado)
+        /// 3. Listo → Entregado (entregado al cliente)
+        ///
+        ///
+        /// ***Nota:*** El estado de la orden general se actualiza automáticamente basado en el estado de todos sus items.
+        /// </remarks>
+        /// <param name="id">
+        /// Número de orden
+        /// </param>
+        /// <param name="itemId">
+        /// ID del item dentro de la orden
+        /// </param>
+        /// /// <param name="request">Nuevo estado para el item</param>
+        /// /// <response code="200">Estado del item actualizado exitosamente</response>
+        /// <response code="400">Estado inválido o transición no permitida</response>
+        /// <response code="404">Orden o item no encontrado</response>
+
+
+        [ProducesResponseType(typeof(OrderUpdateReponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(UpdateOrderItemBadRequestExamples))]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(UpdateOrderItemNotFoundExamples))]
+
+        [HttpPatch("{id}/item/{itemId}")]// Cambia solo algunos campos dentro del recurso(Cambio el orderItem dentro de la Order)
+        public async Task<IActionResult> UpdateOrderItemInOrder(long id, int itemId, [FromBody] OrderItemUpdateRequest request) 
+        {
+            var result = await _updateOrderItemForStatusService.UpdateItemStatus(id, itemId, request);
+            return Ok(result);
         }
     }
 }

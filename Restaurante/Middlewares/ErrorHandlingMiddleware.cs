@@ -37,6 +37,8 @@ namespace Restaurant.Middlewares
 
             switch (ex)
             {
+                case InvalidTransactionException:
+                case ValidationStatusException:
                 case OrderInPreparationException:
                 case DishNotAvailableException:
                 case InvalidDateRangeException:
@@ -54,6 +56,7 @@ namespace Restaurant.Middlewares
                 case DishAlreadyExistsException:
                     statusCode = HttpStatusCode.Conflict;
                     break;
+                case OrderItemNotFoundException:
                 case OrderNotFoundException:
                 case DishNotFoundException:
                     statusCode = HttpStatusCode.NotFound; 
