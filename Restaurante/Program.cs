@@ -25,6 +25,21 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://127.0.0.1:5500") 
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+
+
+
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -159,6 +174,8 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "Error in Migration.");
     }
 }
+
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 

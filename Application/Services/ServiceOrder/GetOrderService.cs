@@ -38,9 +38,9 @@ namespace Application.Services.ServiceOrder
                 deliveryType = new GenericResponse { Id = order.DeliveryTypeId, Name = order.DeliveryType?.Name ?? "Desconocido" },
                 items = order.OrderItems.Select(item => new OrderItemResponse
                 {
-                    id = 2,
+                    id = (int)item.OrderItemId,
                     quantity = item.Quantity,
-                    notes = item.Dish?.Name,
+                    notes = item.Dish.Name,
                     dish = new DishShortResponse { id = item.DishId, name = item.Dish?.Name ?? "Desconocido", image = item.Dish?.ImageUrl ?? "No encontrada" },
                     status = new GenericResponse { Id = item.Status.Id, Name = item.Status?.Name ?? "Desconocido" }
                 }).ToList(),
