@@ -61,7 +61,7 @@ namespace Application.Services.ServiceOrder
                 {
                     id = 2,
                     quantity = item.Quantity,
-                    notes = item.Dish?.Name,
+                    notes = item.Notes,
                     dish = new DishShortResponse { id = item.DishId, name = item.Dish?.Name ?? "Desconocido", image = item.Dish?.ImageUrl ?? "No encontrada" },
                     status = new GenericResponse { Id = item.Status.Id, Name = item.Status?.Name ?? "Desconocido" }
                 }).ToList(),

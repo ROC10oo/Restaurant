@@ -84,7 +84,7 @@ namespace Application.Services.ServiceOrder
             return new OrderCreateResponse
             {
                 orderNumber = (int)newOrder.OrderId,
-                totalAmount = newOrder.Price,
+                totalAmount = (decimal)newOrder.Price,
                 createdAt = DateTime.Now,
             };
 

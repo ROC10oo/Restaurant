@@ -55,7 +55,7 @@ namespace Infrastructure.Query
                 query = query.Where(d => d.Available);
 
 
-            return await query.ToListAsync();
+            return await query.Include(d => d.Category).ToListAsync();
         }
 
 
