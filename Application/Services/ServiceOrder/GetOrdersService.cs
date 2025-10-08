@@ -59,7 +59,7 @@ namespace Application.Services.ServiceOrder
 
                 items = order.OrderItems.Select(item => new OrderItemResponse
                 {
-                    id = 2,
+                    id = (int)item.OrderItemId,
                     quantity = item.Quantity,
                     notes = item.Notes,
                     dish = new DishShortResponse { id = item.DishId, name = item.Dish?.Name ?? "Desconocido", image = item.Dish?.ImageUrl ?? "No encontrada" },
