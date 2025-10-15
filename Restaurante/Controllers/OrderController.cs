@@ -183,7 +183,7 @@ namespace Restaurant.Controllers
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(UpdateOrderBadRequestExamples))]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(UpdateOrderNotFoundExample))]
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> UpdateOrder(long id, [FromBody] OrderUpdateRequest request)
         {
             var resultado = await _updateOrderService.UpdateOrder(request, id);

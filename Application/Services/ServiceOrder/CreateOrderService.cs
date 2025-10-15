@@ -37,7 +37,14 @@ namespace Application.Services.ServiceOrder
             if (deliveryType == null) 
             {
                 throw new InvalidDeliveryException();
-            } 
+            }
+
+            if (string.IsNullOrWhiteSpace(order.delivery.to)) 
+            {
+                throw new EmptyDeliveryToException();
+            }
+
+            
 
             decimal total = 0;
 

@@ -26,5 +26,6 @@ namespace Domain.ErrorsMessages
         public const string OrderInPreparation = "No se puede modificar una orden que ya está en preparación";
         public const string OrderItemNotFound = "Item no encontrado en la orden";
         public const string InvalidStatus = "El estado especificado no es válido";
+        public const string EmptyDeliveryTo = "Debe especificar la direccion o mesa";
     }
 }

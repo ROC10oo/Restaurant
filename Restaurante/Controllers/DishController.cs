@@ -239,13 +239,13 @@ namespace Restaurant.Controllers
         /// - El plato está incluido en órdenes pendientes o en proceso
         /// - El plato tiene dependencias que impiden su eliminación
         /// </remarks>
-        /// /// <response code="200">Plato eliminado exitosamente</response>
+        /// /// <response code="204">Plato eliminado exitosamente</response>
         /// <response code="409">No se puede eliminar - plato en uso</response>
         ///  <response code="404">Plato no encontrado</response>
 
 
-        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(DeleteDishOKExample))]
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status204NoContent)]
+        [SwaggerResponseExample(StatusCodes.Status204NoContent, typeof(DeleteDishOKExample))]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(UpdateDishNotFoundExample))]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
@@ -255,7 +255,7 @@ namespace Restaurant.Controllers
         public async Task<ActionResult> DeleteDish([FromRoute] Guid id)
         {
             var dish = await _deleteDishService.DeleteDish(id);
-            return Ok(dish);
+            return NoContent();
         }
 
 

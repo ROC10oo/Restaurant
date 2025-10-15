@@ -27,7 +27,6 @@ namespace Application.Services.ServiceOrder
         public async Task<OrderUpdateReponse> UpdateItemStatus(long OrderId, int itemId, OrderItemUpdateRequest request)
         {
             var order = await _orderQuery.GetOrderById(OrderId);
-            Console.WriteLine($"Buscando orden {OrderId}, encontrada: {order != null}");
             if (order == null)
             {
                 throw new OrderNotFoundException();
@@ -88,7 +87,7 @@ namespace Application.Services.ServiceOrder
             {
                 orderNumber = (int)order.OrderId,
                 totalAmount = (double)order.Price,
-                updateAt = DateTime.UtcNow
+                updateAt = order.UpdateDate,
             };
         }
 
